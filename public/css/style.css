@@ -1,0 +1,53 @@
+
+:root{
+
+    --flagwidth:20px;
+    --flagheight:20px;
+    --mainColor: #9e121b;
+    --productbackGround:rgb(238, 236, 236)
+
+}
+
+.drapeau{
+
+    width: var(--flagwidth);
+    height:var(--flagheight);
+}
+
+.firsttextpagevin{
+
+    color:var(--mainColor)
+}
+
+.containerproduit{
+    box-shadow: 0 0 7px grey;
+}
+
+
+.containeraffiche{
+  
+    background-color:var(--productbackGround)
+}
+
+
+.producttaste{
+    color:#5f27cd;
+}
+
+.btnaddcart{
+    background-color:var(--mainColor);
+    color: #fff;
+    padding: 5px;
+    border-radius:5px;
+    text-decoration: none;
+}
+
+/* logo */
+
+.logo{
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+}
+
+

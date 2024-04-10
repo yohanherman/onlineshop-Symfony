@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}panier
+{% endblock %}
+
+{% block body %}
+
+{% include('_partials/_header.html.twig')%}
+	<p>le panier</p>
+
+
+	{% if app.user %}
+		<div class="mb-3">
+			{# {{ app.user.userIdentifier }}, #}
+			<a class="bg-danger text-white p-2 rounded text-decoration-none" href="{{ path('app_logout') }}">Se deconnecter</a>
+		</div>
+	{% endif %}
+
+
+{% endblock %}

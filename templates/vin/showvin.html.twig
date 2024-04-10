@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}fiche produit{% endblock %}
+
+
+{% block body %}
+
+
+	{% include("_partials/_header.html.twig") %}
+
+	<div class=" text-center containerproduit m-3 p-1">
+
+		<div class="containeraffiche">
+
+			<img class="w-50 h-50" src="/imagesVins/{{vin.pathProduct}}" alt="{{vin.productName}}"/>
+
+			<h4>{{vin.productName}}</h4>
+
+			<p>
+				<i class="fa-solid fa-star text-warning"></i>
+				{{vin.productNote}}
+			</p>
+			<p><img class="drapeau m-2" src="/imagedrapeaux/{{vin.flagPath}}"/>{{vin.productArea}}</p>
+			<p>{{vin.cepage}}</p>
+			<p class="text-info">{{vin.producttageagreement}}</p>
+			<p class="producttaste">{{vin.producttagtaste}}</p>
+			<p>{{vin.description}}</p>
+
+		</div>
+
+
+		<div
+			class="d-flex flex-column mt-4 p-3 containeraffiche">
+
+			{# <p>{{vin.id}}</p> #}
+			<div class="text-start">
+
+
+				{% if vin.discountPrice > 0 %}
+
+					{% set remise = vin.productPrice * ( 1 - vin.discountPrice / 100)  %}
+
+					<div class="d-flex ">
+						<div>
+							<h3 class="text-danger">{{ remise }}€</h3>
+							<p>La bouteille</p>
+						</div>
+
+						<div>
+							<h3 class="text-decoration-line-through">{{vin.productPrice}}€</h3>
+						</div>
+
+					</div>
+
+				</div>
+
+			{% else %}
+
+				<div>
+					<h3>{{vin.productPrice}}€</h3>
+				</div>
+
+			{% endif %}
+
+			<div class="d-flex flex-column">
+
+				<input type="number" class="mb-3">
+				<a class="btnaddcart" href="">ajouter au panier</a>
+
+			</div>
+
+			<div class="text-start mt-4">
+
+
+				{% if vin.status == 1 %}
+
+					<p class="text-success fw-bold">En stock</p>
+
+				{% else %}
+
+					<p class="text-danger fw-bold">Rupture
+						<i class="fa-solid fa-x"></i>
+					</p>
+
+				{% endif %}
+
+			</div>
+
+		</div>
+
+	{% endblock %}

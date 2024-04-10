@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}nos-vins
+
+{% endblock %}
+
+
+{% block body %}
+
+	{% include("_partials/_header.html.twig") %}
+
+
+	<h3 class="text-center mt-5 mb-5 firsttextpagevin">Notre Catalogue de vins</h3>
+
+
+	{% for listvins in vins %}
+
+		<div class="m-2 ">
+
+			<div
+				class=" d-flex containerproduit">
+
+
+				{# w-100 pour la largeur de mon bloc qui contient mon'image #}
+				<div class="w-100">
+
+					<a href="{{url('vinsShow', {'id': listvins.id }) }}">
+
+						<img class="w-75 h-75 rounded" src="/imagesVins/{{listvins.pathProduct}}" alt="{{listvins.productName}}"/>
+
+					</a>
+
+				</div>
+
+				{# pour la largeur du bloc  qui contient les details #}
+				<div class="w-100">
+					<p>
+						<i class="fa-solid fa-star text-warning m-2"></i>
+						{{listvins.productNote}}</p>
+
+					<h4>{{listvins.productName}}</h4>
+					<p><img src="imagedrapeaux/{{listvins.flagPath}}" class="drapeau m-2">
+						{{listvins.productArea}}</p>
+
+
+					{% if listvins.discountPrice > 0 %}
+
+
+						{% set remise = listvins.productPrice * ( 1 - listvins.discountPrice / 100)  %}
+
+
+						<p class="text-danger">-
+							{{ listvins.discountPrice}}% de Remise</p>
+
+						<div>
+
+							<h4 class="text-danger">{{ remise }}€</h4>
+							<h4 class="text-decoration-line-through">{{listvins.productPrice}}€</h4>
+
+						</div>
+
+
+					{% else %}
+						<h4>{{listvins.productPrice}}€</h4>
+
+					{% endif %}
+
+				</div>
+
+
+			</div>
+		{% endfor %}
+
+	</div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+{% endblock %}
