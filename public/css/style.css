@@ -50,4 +50,49 @@
     border-radius: 50%;
 }
 
+/* panier */
+
+.imageProdDansPanier{
+    width:60px;
+    height:60px;
+}
+
+.inputquantitypanier{
+    width:20px;
+    height:20px;
+    text-align:center;
+}
+
+.btncommande{
+    font-size: 20px;
+    
+}
+
+.fa-arrow-left{
+    font-size:25px
+}
+
+
+/* header */
+
+
+
+/* login */
+/* .fa-eye-slash{
+    position:relative;
+    right:21px;
+    opacity:0;
+    color:red;
+} */
+
+
+/* .blockeye:after{
+    content:url(imagegeneral/oeil2.png);
+}
+.blockeye{
+    color:red;
+} */
+
+
+
 

@@ -1,20 +1,125 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}panier
+{% block title %}Mon panier
 {% endblock %}
 
 {% block body %}
 
-{% include('_partials/_header.html.twig')%}
-	<p>le panier</p>
+	{% include('_partials/_header.html.twig')%}
+	<h3 class="text-center mt-4 mb-3">Mon panier</h3>
 
 
-	{% if app.user %}
-		<div class="mb-3">
-			{# {{ app.user.userIdentifier }}, #}
-			<a class="bg-danger text-white p-2 rounded text-decoration-none" href="{{ path('app_logout') }}">Se deconnecter</a>
+	<div class="ms-4 mb-5">
+		<a href="{{path('app_vin')}}">
+			<i class="fa-solid fa-arrow-left"></i>
+		</a>
+	</div>
+
+
+	{% if data is empty %}
+
+		<p>Votre panier presentement vide</p>
+
+	{% else %}
+
+		{% for element in data %}
+
+			<div class="P-4 border border-secondary m-3">
+
+				<div class="d-flex justify-content-between">
+					<div class="d-flex flex-column ">
+						<img class="imageProdDansPanier" src="/imagesVins/{{element.vins.pathproduct}}" alt="image_du_produit"/>
+						<h5 class="ms-2">{{element.vins.productName}}</h5>
+					</div>
+
+					<div class="mt-4 ms-3">
+
+						{% if element.vins.discountPrice > 0 %}
+
+							{% set prixDeRemise = element.vins.productPrice * ( 1 - element.vins.discountPrice / 100)  %}
+
+							<p>Prix:
+								<span class="fw-bold text-danger">
+									{{prixDeRemise}}
+									€</span>
+							</p>
+
+							<span class="fw-bold text-decoration-line-through">
+								{{element.vins.productPrice}}
+
+								€</span>
+
+
+						{% else %}
+
+							<p>Prix:
+								<span class="fw-bold">
+									{{element.vins.productPrice}}
+									€</span>
+							</p>
+							pas de remise
+
+						{% endif %}
+
+					</div>
+
+
+					<div class="ms-5 mt-4">
+						<form class="form">
+
+							<button class=" border-0 btnIncrement" type="submit">
+								<i class="fa-solid fa-plus"></i>
+							</button>
+							<input class="inputquantitypanier fw-bold border-0" type="text" name="quantity" value="{{element.quantity}}"/>
+							<button class="border-0 btndecrement" type="submit">
+								<i class="fa-solid fa-minus"></i>
+							</button>
+
+						</form>
+					</div>
+
+					<div class="mt-4 me-3">
+						<i class="fa-solid fa-trash text-danger"></i>
+					</div>
+				</div>
+			</div>
+
+
+		{% endfor %}
+
+		{% if  vin > 0 %}
+
+			<div class="m-3">
+				<h4>Total:
+					<span class="text-decoration-line-through">{{total}}
+						€</span>
+				</h4>
+			</div>
+
+			<div class="m-3">
+				<h4>Total Applicable:
+					<span class="text-danger">{{totalavecreduc}}
+						€</span>
+				</h4>
+			</div>
+
+
+		{% else %}
+
+			<div class="m-3">
+				<h4>Total:
+					<span class="text-decoration">{{total}}
+						€</span>
+				</h4>
+			</div>
+
+		{% endif %}
+
+
+		<div class="text-center mt-5 w-100 ">
+			<a class="btncommande text-decoration-none bg-success text-white p-3 rounded w-100" href="">Commander</a>
 		</div>
+
+
 	{% endif %}
-
-
 {% endblock %}

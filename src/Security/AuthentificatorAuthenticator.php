@@ -49,7 +49,7 @@ class AuthentificatorAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('cart'));
+        return new RedirectResponse($this->urlGenerator->generate('cart_index'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}fiche produit{% endblock %}
+{% block title %}fiche produit
+{% endblock %}
 
 
 {% block body %}
@@ -62,30 +63,43 @@
 
 			{% endif %}
 
-			<div class="d-flex flex-column">
-
-				<input type="number" class="mb-3">
-				<a class="btnaddcart" href="">ajouter au panier</a>
-
-			</div>
 
 			<div class="text-start mt-4">
 
 
 				{% if vin.status == 1 %}
 
+					<div class="d-flex flex-column">
+
+						<form action="{{path("cart_add",{'id':vin.id})}}" method="POST">
+
+							<input type="number" name="quantity" class="mb-3"/>
+							{# <input #}
+							{# type="hidden" name="id" value="{{vin.id}}" class="mb-3"/> #}
+
+							{# <a class="btnaddcart" href="{{path('cart_add',{'id':vin.id})}}">ajouter au panier</a> #}
+								<button class="btnaddcart" type="submit"> ajouter au panier</button>
+						</form>
+
+					</div>
+
 					<p class="text-success fw-bold">En stock</p>
 
 				{% else %}
 
-					<p class="text-danger fw-bold">Rupture
-						<i class="fa-solid fa-x"></i>
-					</p>
+					<div class="d-flex flex-column">
 
-				{% endif %}
+						<input type="number" class="mb-3">
+						<a class="btnaddcart btn btn disabled" href="{{path('add',{'id':vin.id})}}">ajouter au panier</a</div>
+
+						<p class="text-danger fw-bold">Temporairement en Rupture
+							{# <i class="fa-solid fa-x"></i> #}
+						</p>
+
+					{% endif %}
+
+				</div>
 
 			</div>
 
-		</div>
-
-	{% endblock %}
+		{% endblock %}
