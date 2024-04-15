@@ -16,12 +16,12 @@
 
 
 		{# {% if app.user %}
-													<div class="mb-3">
-														vous connectez avec l'Email :
-														{{ app.user.userIdentifier }},
-														<a href="{{ path('app_logout') }}">se deconnecter</a>
-													</div>
-												{% endif %} #}
+																					<div class="mb-3">
+																						vous connectez avec l'Email :
+																						{{ app.user.userIdentifier }},
+																						<a href="{{ path('app_logout') }}">se deconnecter</a>
+																					</div>
+																				{% endif %} #}
 
 
 		<div class="m-2">
@@ -34,8 +34,7 @@
 				<label class="mb-2" for="inputPassword">Mot de passe</label>
 				<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 				<div class="text-end me-2 mt-2">
-					<i class="fa-solid fa-eye"></i>
-					{# <i class="fa-solid fa-eye-slash"></i> #}
+					<img class="eyeclosed" src="/imagegeneral/closed-eye.png">
 				</div>
 
 			</div>

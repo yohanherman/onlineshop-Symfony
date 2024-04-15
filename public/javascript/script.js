@@ -22,32 +22,22 @@ const btndecrement=document.querySelectorAll('.btndecrement');
 
 
 
-
 function hidepassword(){
-
     const password=document.querySelector("#inputPassword")
-    const eye=document.querySelector(".fa-eye")
-    const eyeclosed=document.querySelector(".fa-eye-slash")
+    const eyeclosed=document.querySelector(".eyeclosed")
     
-    
-    eye.addEventListener('click',()=>{
+    eyeclosed.addEventListener('click',()=>{
         if(password.type ==="password"){
             password.type = "text"
-            // eyeclosed.style.opacity="1"
-        
-            
+            eyeclosed.src="/imagegeneral/open-eye.png"
+          
         }else if(password.type ==="text"){
-            password.type="password"
-        
-        }
-        
+            password.type="password";
+            eyeclosed.src="imagegeneral/closed-eye.png";
+        } 
     })
 }
-
 hidepassword();
-
-
-
 
 
 })

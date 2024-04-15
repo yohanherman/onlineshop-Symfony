@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Images;
 use App\Entity\Vins;
 use App\Repository\VinsRepository;
 use Doctrine\ORM\EntityManagerInterface;

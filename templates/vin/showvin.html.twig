@@ -6,8 +6,13 @@
 
 {% block body %}
 
-
 	{% include("_partials/_header.html.twig") %}
+
+	<div class="ms-4 mb-5 mt-4">
+		<a href="{{path('app_vin')}}">
+			<i class="fa-solid fa-arrow-left"></i>
+		</a>
+	</div>
 
 	<div class=" text-center containerproduit m-3 p-1">
 
@@ -15,91 +20,108 @@
 
 			<img class="w-50 h-50" src="/imagesVins/{{vin.pathProduct}}" alt="{{vin.productName}}"/>
 
-			<h4>{{vin.productName}}</h4>
 
-			<p>
-				<i class="fa-solid fa-star text-warning"></i>
-				{{vin.productNote}}
-			</p>
-			<p><img class="drapeau m-2" src="/imagedrapeaux/{{vin.flagPath}}"/>{{vin.productArea}}</p>
-			<p>{{vin.cepage}}</p>
-			<p class="text-info">{{vin.producttageagreement}}</p>
-			<p class="producttaste">{{vin.producttagtaste}}</p>
-			<p>{{vin.description}}</p>
-
-		</div>
-
-
-		<div
-			class="d-flex flex-column mt-4 p-3 containeraffiche">
-
-			{# <p>{{vin.id}}</p> #}
-			<div class="text-start">
-
-
-				{% if vin.discountPrice > 0 %}
-
-					{% set remise = vin.productPrice * ( 1 - vin.discountPrice / 100)  %}
-
-					<div class="d-flex ">
-						<div>
-							<h3 class="text-danger">{{ remise }}€</h3>
-							<p>La bouteille</p>
-						</div>
-
-						<div>
-							<h3 class="text-decoration-line-through">{{vin.productPrice}}€</h3>
-						</div>
-
-					</div>
-
+			<div class="dropdown mb-3">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+					voir plus
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					<li>
+						<a class="dropdown-item" href="{{path('images_produits',{'id':vin.id})}}">plus images ...</a>
+					</li>
+					<li>
+						<a class="dropdown-item" href="#">commentaires</a>
+					</li>
 				</div>
 
-			{% else %}
 
-				<div>
-					<h3>{{vin.productPrice}}€</h3>
-				</div>
+				{# <div class="mb-4">
+					<a class="text-decoration-none" href="{{path('images_produits',{'id':vin.id})}}">voir plus d'images ...</a>
+				</div> #}
 
-			{% endif %}
+				<h4>{{vin.productName}}</h4>
 
-
-			<div class="text-start mt-4">
-
-
-				{% if vin.status == 1 %}
-
-					<div class="d-flex flex-column">
-
-						<form action="{{path("cart_add",{'id':vin.id})}}" method="POST">
-
-							<input type="number" name="quantity" class="mb-3"/>
-							{# <input #}
-							{# type="hidden" name="id" value="{{vin.id}}" class="mb-3"/> #}
-
-							{# <a class="btnaddcart" href="{{path('cart_add',{'id':vin.id})}}">ajouter au panier</a> #}
-								<button class="btnaddcart" type="submit"> ajouter au panier</button>
-						</form>
-
-					</div>
-
-					<p class="text-success fw-bold">En stock</p>
-
-				{% else %}
-
-					<div class="d-flex flex-column">
-
-						<input type="number" class="mb-3">
-						<a class="btnaddcart btn btn disabled" href="{{path('add',{'id':vin.id})}}">ajouter au panier</a</div>
-
-						<p class="text-danger fw-bold">Temporairement en Rupture
-							{# <i class="fa-solid fa-x"></i> #}
-						</p>
-
-					{% endif %}
-
-				</div>
+				<p>
+					<i class="fa-solid fa-star text-warning"></i>
+					{{vin.productNote}}
+				</p>
+				<p><img class="drapeau m-2" src="/imagedrapeaux/{{vin.flagPath}}"/>{{vin.productArea}}</p>
+				<p>{{vin.cepage}}</p>
+				<p class="text-info">{{vin.producttageagreement}}</p>
+				<p class="producttaste">{{vin.producttagtaste}}</p>
+				<p>{{vin.description}}</p>
 
 			</div>
 
-		{% endblock %}
+
+			<div
+				class="d-flex flex-column mt-4 p-3 containeraffiche">
+
+				{# <p>{{vin.id}}</p> #}
+				<div class="text-start">
+
+
+					{% if vin.discountPrice > 0 %}
+
+						{% set remise = vin.productPrice * ( 1 - vin.discountPrice / 100)  %}
+
+						<div class="d-flex ">
+							<div>
+								<h3 class="text-danger">{{ remise }}€</h3>
+								<p>La bouteille</p>
+							</div>
+
+							<div>
+								<h3 class="text-decoration-line-through">{{vin.productPrice}}€</h3>
+							</div>
+
+						</div>
+
+					</div>
+
+				{% else %}
+
+					<div>
+						<h3>{{vin.productPrice}}€</h3>
+					</div>
+
+				{% endif %}
+
+				<div class="text-start mt-4">
+
+					{% if vin.status == 1 %}
+
+						<div class="">
+							<form class="d-flex flex-column" action="{{path("cart_add",{'id':vin.id})}}" method="POST">
+								<input type="number" name="quantity" class="mb-3"/>
+
+								<button class="btnaddcart" type="submit">
+									ajouter au panier</button>
+							</form>
+						</div>
+
+						<div class="mt-3">
+							<p class="text-success fw-bold text-uppercase">En stock</p>
+						</div>
+
+					{% else %}
+
+						<div class="d-flex flex-column">
+
+							<input type="number" class="mb-3">
+							<a class="btnaddcart btn btn disabled" href="{{path('add',{'id':vin.id})}}">ajouter au panier</a</div>
+
+							<p class="text-danger fw-bold">Temporairement en Rupture</p>
+
+						{% endif %}
+
+					</div>
+
+				</div>
+			</div>
+			{# <div>
+				<a href="#">afficher les commentaires</a>
+			</div> #}
+		</div>
+
+	{% endblock %}

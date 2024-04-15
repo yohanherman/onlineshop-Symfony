@@ -19,7 +19,7 @@
     color:var(--mainColor)
 }
 
-.containerproduit{
+.containerproduit,.containerprodpanier{
     box-shadow: 0 0 7px grey;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .inputquantitypanier{
-    width:20px;
+    width:30px;
     height:20px;
     text-align:center;
 }
@@ -85,13 +85,12 @@
     color:red;
 } */
 
-
-/* .blockeye:after{
-    content:url(imagegeneral/oeil2.png);
+.eyeclosed{
+    width:20px;
+    position:relative;
+    bottom:40px;
+  
 }
-.blockeye{
-    color:red;
-} */
 
 
 

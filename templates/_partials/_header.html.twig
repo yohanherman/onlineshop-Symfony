@@ -4,7 +4,7 @@
 	{% if app.user %}
 
 
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light p-2">
 
 			<div class="container-fluid">
 
@@ -33,6 +33,9 @@
 						<a class="nav-link" href="{{path('app_vin')}}">Nos vins</a>
 					</li>
 					<li class="nav-item">
+						<a class="nav-link" href="#">Nos coffrets</a>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link text-danger" href="{{ path('app_logout') }}">se deconnecter</a>
 					</li>
 				</ul>
@@ -53,7 +56,6 @@
 			</button>
 
 
-			{# <a class="navbar-brand" href="{{path('Accueil')}}"><img class="logo" src="logoimage/logo.jpg"/></a> #}
 			<a class="navbar-brand" href="{{path('Accueil')}}">LOGO</a>
 
 			<div class="">
@@ -74,6 +76,27 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{path('app_vin')}}">Nos vins</a>
 					</li>
+
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Nos coffrets
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li>
+								<a class="dropdown-item" href="#">Nos rouges</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="kkkkk">Nos blancs</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="kkkkk">champagnes</a>
+							</li>
+
+						</ul>
+					</li>
+
+
 					<li class="nav-item">
 						<a class="nav-link" href="{{path('app_login')}}">Espace Client</a>
 					</li>

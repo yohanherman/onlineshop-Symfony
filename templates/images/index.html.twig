@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ImagesController!
+{% endblock %}
+
+{% block body %}
+
+	{% for image in images %}
+
+		<img class="w-50 h-50" src="/imagesVins/{{image.path}}" , alt="image_produit"/>
+
+	{% endfor %}
+
+
+{% endblock %}

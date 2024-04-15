@@ -6,25 +6,27 @@
 {% block body %}
 
 	{% include('_partials/_header.html.twig')%}
-	<h3 class="text-center mt-4 mb-3">Mon panier</h3>
 
-
-	<div class="ms-4 mb-5">
+	<div class="ms-4 mb-5 mt-4">
 		<a href="{{path('app_vin')}}">
 			<i class="fa-solid fa-arrow-left"></i>
 		</a>
 	</div>
 
 
+	<h3 class="text-center mt-4 mb-3">Mon panier</h3>
+
+
+
 	{% if data is empty %}
 
-		<p>Votre panier presentement vide</p>
+		<p class="d-flex justify-content-center align-items-center mt-5 ">Votre panier est presentement vide</p>
 
 	{% else %}
 
 		{% for element in data %}
 
-			<div class="P-4 border border-secondary m-3">
+			<div class="containerprodpanier P-4 border border-secondary m-3">
 
 				<div class="d-flex justify-content-between">
 					<div class="d-flex flex-column ">
@@ -57,69 +59,70 @@
 									{{element.vins.productPrice}}
 									€</span>
 							</p>
-							pas de remise
 
 						{% endif %}
 
 					</div>
 
 
-					<div class="ms-5 mt-4">
-						<form class="form">
+					<div class="ms-5 mt-4 d-flex m-2">
+						<a href="{{path('cart_remove',{'id': element.vins.id })}}">
+							<i class="fa-solid fa-minus text-warning"></i>
+						</a>
 
-							<button class=" border-0 btnIncrement" type="submit">
-								<i class="fa-solid fa-plus"></i>
-							</button>
-							<input class="inputquantitypanier fw-bold border-0" type="text" name="quantity" value="{{element.quantity}}"/>
-							<button class="border-0 btndecrement" type="submit">
-								<i class="fa-solid fa-minus"></i>
-							</button>
+						<input class="inputquantitypanier fw-bold border-0" type="text" name="quantity" value="{{element.quantity}}"/>
 
-						</form>
+						<a href="{{path('cart_addMore',{'id': element.vins.id })}}">
+							<i class="fa-solid fa-plus text-success"></i>
+						</a>
+
 					</div>
 
 					<div class="mt-4 me-3">
-						<i class="fa-solid fa-trash text-danger"></i>
+						<a href="{{path('cart_delete',{'id':element.vins.id})}}">
+							<i class="fa-solid fa-trash text-danger"></i>
+						</a>
 					</div>
 				</div>
 			</div>
-
-
 		{% endfor %}
+
 
 		{% if  vin > 0 %}
 
 			<div class="m-3">
-				<h4>Total:
+				<h4>Sous-total:
 					<span class="text-decoration-line-through">{{total}}
 						€</span>
 				</h4>
 			</div>
 
 			<div class="m-3">
-				<h4>Total Applicable:
+				<h4>Sous-total Applicable:
 					<span class="text-danger">{{totalavecreduc}}
 						€</span>
 				</h4>
 			</div>
 
-
+			<div class="text-center p-2">
+				<a class="bg-danger rounded text-white p-2 text-decoration-none" href="{{path('cart_empty')}}">vider le panier</a>
+			</div>
 		{% else %}
 
 			<div class="m-3">
-				<h4>Total:
+				<h4>Sous-total:
 					<span class="text-decoration">{{total}}
 						€</span>
 				</h4>
 			</div>
 
+			<div class="text-center p-2">
+				<a class="bg-danger rounded text-white p-2 text-decoration-none" href="{{path('empty')}}">vider le panier</a>
+			</div>
+
 		{% endif %}
-
-
 		<div class="text-center mt-5 w-100 ">
 			<a class="btncommande text-decoration-none bg-success text-white p-3 rounded w-100" href="">Commander</a>
 		</div>
-
-
 	{% endif %}
 {% endblock %}
