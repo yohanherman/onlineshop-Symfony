@@ -24,7 +24,7 @@
 }
 
 
-.containeraffiche{
+.containeraffiche,.backgroundCommentaire{
   
     background-color:var(--productbackGround)
 }

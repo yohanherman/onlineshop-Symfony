@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}coffret rouges
+{% endblock %}
+
+{% block body %}
+	{# 
+			<a href="{{url('vinsShow', {'id': listvins.id }) }}">
+		
+				<img class="w-75 h-75 rounded" src="/imagesVins/{{listvins.pathProduct}}" alt="{{listvins.productName}}"/>
+		
+			</a> #}
+
+	{% include('_partials/_header.html.twig') %}
+
+	<h3 class="text-center mt-5 mb-5 firsttextpagevin">Nos coffret de vins ROUGES</h3>
+
+	{% for coffretrouge in coffretrouges %}
+
+		<div class="m-2 ">
+			<div class="container containerproduit d-flex">
+
+				<div class="w-100">
+					<a href="{{url('showcoffretrouge',{'id':coffretrouge.id})}}">
+						<img class="w-50 h-50 rounded" src="/imagesVins/{{coffretrouge.pathProduct}}" alt="image_coffret">
+					</a>
+				</div>
+
+				<div class="w-100">
+					<h4>{{coffretrouge.productName}}</h4>
+
+					<p>
+						<i class="fa-solid fa-star text-warning m-2"></i>
+						{{coffretrouge.productNote}}
+					</p>
+
+					{{coffretrouge.productArea}}
+					<p><img src="/imagedrapeaux/{{coffretrouge.flagPath}}" class="drapeau m-2">{{coffretrouge.productArea}}</p>
+
+
+					{% if coffretrouge.discount > 0 %}
+
+						{% set remise = coffretrouge.productPrice * ( 1 - coffretrouge.discount / 100)  %}
+
+
+						<p class="text-danger">-
+							{{ coffretrouge.discount}}% de Remise</p>
+
+						<div>
+
+							<h4 class="text-danger">{{ remise }}€</h4>
+							<h4 class="text-decoration-line-through">{{coffretrouge.productPrice}}€</h4>
+
+						</div>
+
+
+					{% else %}
+						<h4>{{coffretrouge.productPrice}}€</h4>
+
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+
+	{% endfor %}
+{% endblock %}

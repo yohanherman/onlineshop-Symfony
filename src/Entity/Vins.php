@@ -57,9 +57,16 @@ class Vins
     #[ORM\OneToMany(targetEntity: Images::class, mappedBy: 'vins')]
     private Collection $images;
 
+    /**
+     * @var Collection<int, Reviews>
+     */
+    #[ORM\OneToMany(targetEntity: Reviews::class, mappedBy: 'vins')]
+    private Collection $reviews;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
   
@@ -236,6 +243,36 @@ class Vins
             // set the owning side to null (unless already changed)
             if ($image->getVins() === $this) {
                 $image->setVins(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reviews>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Reviews $review): static
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews->add($review);
+            $review->setVins($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Reviews $review): static
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getVins() === $this) {
+                $review->setVins(null);
             }
         }
 

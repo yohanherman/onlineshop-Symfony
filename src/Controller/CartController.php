@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Vins;
+use App\Entity\vins;
+use App\Repository\CoffretrougeRepository;
 use App\Repository\VinsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,11 +16,11 @@ class CartController extends AbstractController
 {
 
     #[Route('/', name: 'index')]
-    public function index(SessionInterface $session, VinsRepository $vinsRepository): Response
+    public function index(SessionInterface $session, VinsRepository $vinsRepository, CoffretrougeRepository $coffretrougeRepository): Response
     {
-        if (!$this->getUser()) {
-            return $this->redirectToRoute('app_login');
-        }
+        // if (!$this->getUser()) {
+        //     return $this->redirectToRoute('app_login');
+        // }
 
         $panier = $session->get('panier', []);
         // dd($panier);
@@ -32,9 +33,8 @@ class CartController extends AbstractController
         $quantiteAffichersurIcon = 0;
 
         foreach ($panier as $id => $quantity) {
-            
-            $vins = $vinsRepository->find($id);
 
+            $vins = $vinsRepository->find($id);
             $data[] = [
                 'vins' => $vins,
                 'quantity' => $quantity

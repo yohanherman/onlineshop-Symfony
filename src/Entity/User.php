@@ -46,6 +46,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -161,9 +162,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-      $this->isVerified= FALSE;
-      $this->tokenRegistrationLifeTime=(new \Datetime('now'))->add(new \DateInterval('P1D'));
-      
+        $this->isVerified = FALSE;
+        $this->tokenRegistrationLifeTime = (new \Datetime('now'))->add(new \DateInterval('P1D'));
+    
     }
 
     public function getPseudo(): ?string

@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}fiche produit
 {% endblock %}
 
 
 {% block body %}
+
 
 	{% include("_partials/_header.html.twig") %}
 
@@ -18,7 +20,7 @@
 
 		<div class="containeraffiche container">
 
-			<img class="w-50 h-50" src="/imagesVins/{{vin.pathProduct}}" alt="{{vin.productName}}"/>
+			<img class="w-50 h-50" src="/imagesVins/{{fichecoffret.pathProduct}}" alt="{{fichecoffret.productName}}"/>
 
 
 			<div class="dropdown mb-3">
@@ -27,29 +29,29 @@
 				</button>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 					<li>
-						<a class="dropdown-item" href="{{path('images_produits',{'id':vin.id})}}">plus images ...</a>
+						<a class="dropdown-item" href="{{path('images_produits',{'id':fichecoffret.id})}}">plus images ...</a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="{{path('commentaires',{'id':vin.id})}}">commentaires</a>
+						<a class="dropdown-item" href="{{path('commentaires',{'id':fichecoffret.id})}}">commentaires</a>
 					</li>
 				</div>
 
 
 				{# <div class="mb-4">
-									<a class="text-decoration-none" href="{{path('images_produits',{'id':vin.id})}}">voir plus d'images ...</a>
-								</div> #}
+																	<a class="text-decoration-none" href="{{path('images_produits',{'id':vin.id})}}">voir plus d'images ...</a>
+																</div> #}
 
-				<h4>{{vin.productName}}</h4>
+				<h4>{{fichecoffret.productName}}</h4>
 
 				<p>
 					<i class="fa-solid fa-star text-warning"></i>
-					{{vin.productNote}}
+					{{fichecoffret.productNote}}
 				</p>
-				<p><img class="drapeau m-2" src="/imagedrapeaux/{{vin.flagPath}}"/>{{vin.productArea}}</p>
-				<p>{{vin.cepage}}</p>
-				<p class="text-info">{{vin.producttageagreement}}</p>
-				<p class="producttaste">{{vin.producttagtaste}}</p>
-				<p>{{vin.description}}</p>
+				<p><img class="drapeau m-2" src="/imagedrapeaux/{{fichecoffret.flagPath}}"/>{{fichecoffret.productArea}}</p>
+				<p>{{fichecoffret.cepage}}</p>
+				<p class="text-info">{{fichecoffret.productagreement}}</p>
+				<p class="producttaste">{{fichecoffret.producttaste}}</p>
+				<p>{{fichecoffret.description}}</p>
 
 			</div>
 
@@ -61,9 +63,9 @@
 				<div class="text-start">
 
 
-					{% if vin.discountPrice > 0 %}
+					{% if fichecoffret.discount > 0 %}
 
-						{% set remise = vin.productPrice * ( 1 - vin.discountPrice / 100)  %}
+						{% set remise = fichecoffret.productPrice * ( 1 - fichecoffret.discount / 100)  %}
 
 						<div class="d-flex ">
 							<div>
@@ -72,7 +74,7 @@
 							</div>
 
 							<div>
-								<h3 class="text-decoration-line-through">{{vin.productPrice}}€</h3>
+								<h3 class="text-decoration-line-through">{{fichecoffret.productPrice}}€</h3>
 							</div>
 
 						</div>
@@ -82,17 +84,17 @@
 				{% else %}
 
 					<div>
-						<h3>{{vin.productPrice}}€</h3>
+						<h3>{{fichecoffret.productPrice}}€</h3>
 					</div>
 
 				{% endif %}
 
 				<div class="text-start mt-4">
 
-					{% if vin.status == 1 %}
+					{% if fichecoffret.status == 1 %}
 
 						<div class="">
-							<form class="d-flex flex-column" action="{{path("cart_add",{'id':vin.id})}}" method="POST">
+							<form class="d-flex flex-column" action="{{path("cart_add",{'id':fichecoffret.id})}}" method="POST">
 								<input type="number" name="quantity" class="mb-3"/>
 
 								<button class="btnaddcart" type="submit">

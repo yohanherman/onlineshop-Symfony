@@ -32,9 +32,27 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{path('app_vin')}}">Nos vins</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Nos coffrets</a>
+
+
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Nos coffrets
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li>
+								<a class="dropdown-item" href="{{path('coffretrouge')}}">Nos rouges</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="{{path('coffretblanc')}}">Nos blancs</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="kkkkk">champagnes</a>
+							</li>
+
+						</ul>
 					</li>
+
+
 					<li class="nav-item">
 						<a class="nav-link text-danger" href="{{ path('app_logout') }}">se deconnecter</a>
 					</li>
@@ -84,10 +102,10 @@
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li>
-								<a class="dropdown-item" href="#">Nos rouges</a>
+								<a class="dropdown-item" href="{{path('coffretrouge')}}">Nos rouges</a>
 							</li>
 							<li>
-								<a class="dropdown-item" href="kkkkk">Nos blancs</a>
+								<a class="dropdown-item" href="{{path('coffretblanc')}}">Nos blancs</a>
 							</li>
 							<li>
 								<a class="dropdown-item" href="kkkkk">champagnes</a>

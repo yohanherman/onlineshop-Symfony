@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	commentaires
+{% endblock %}
+
+
+{% block body %}
+
+	{% include '_partials/_header.html.twig'%}
+
+	<div class="ms-4 mb-5 mt-4">
+		<a href="{{path('vinsShow',{'id':vin_id})}}">
+			<i class="fa-solid fa-arrow-left"></i>
+		</a>
+	</div>
+
+
+	<div class="mt-5 container">
+		{{form_start (form) }}
+
+		<div class="m-2">
+			<div class="d-flex flex-column">
+				<label for="commentaire">Inserer votre commentaire:</label>
+				<textarea name="{{ field_name(form.commentaires) }}"></textarea>
+			</div>
+
+			<input type="hidden" name="{{ field_name(form.vins)}}" value="{{vin_id}}">
+			<input type="hidden" name="{{ field_name(form.user)}}" value="{{user_id}}">
+
+			<button class="border-0 mt-2 bg-primary text-white rounded p-2" type="submit">Envoyer</button>
+		</div>
+
+		{{form_end (form)}}
+
+	</div>
+
+	<h5 class="text-center mt-5">les commentaires liés au produit</h5>
+
+	<div class="container">
+		{% for commentaire in commentaires  %}
+
+			<div class="backgroundCommentaire p-2">
+				<span class="fw-bold">De:{{commentaire.pseudo}}</span>
+				<p>{{commentaire.commentaires}}</p>
+			</div>
+
+
+		{% endfor %}
+	</div>
+
+{% endblock %}
