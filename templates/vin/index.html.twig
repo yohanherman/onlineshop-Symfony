@@ -16,7 +16,6 @@
 	{% for listvins in vins %}
 
 		<div class="m-2 ">
-
 			<div
 				class=" d-flex containerproduit">
 
@@ -36,11 +35,15 @@
 				<div class="w-100">
 					<p>
 						<i class="fa-solid fa-star text-warning m-2"></i>
-						{{listvins.productNote}}</p>
+						{{listvins.productNote}}
+					</p>
 
 					<h4>{{listvins.productName}}</h4>
-					<p><img src="imagedrapeaux/{{listvins.flagPath}}" class="drapeau m-2">
-						{{listvins.productArea}}</p>
+
+					<p>
+						<img src="imagedrapeaux/{{listvins.flagPath}}" class="drapeau m-2">
+						{{listvins.productArea}}
+					</p>
 
 
 					{% if listvins.discountPrice > 0 %}

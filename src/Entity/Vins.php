@@ -63,13 +63,16 @@ class Vins
     #[ORM\OneToMany(targetEntity: Reviews::class, mappedBy: 'vins')]
     private Collection $reviews;
 
+    #[ORM\ManyToOne(inversedBy: 'vins')]
+    private ?Categories $categories = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->reviews = new ArrayCollection();
     }
 
-  
+
     public function getId(): ?int
     {
         return $this->id;
@@ -249,6 +252,12 @@ class Vins
         return $this;
     }
 
+    public function __toString(): String
+    {
+        return $this->getProductName();
+    }
+
+
     /**
      * @return Collection<int, Reviews>
      */
@@ -279,5 +288,15 @@ class Vins
         return $this;
     }
 
+    public function getCategories(): ?Categories
+    {
+        return $this->categories;
+    }
 
+    public function setCategories(?Categories $categories): static
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
 }

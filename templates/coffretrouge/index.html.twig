@@ -4,16 +4,11 @@
 {% endblock %}
 
 {% block body %}
-	{# 
-			<a href="{{url('vinsShow', {'id': listvins.id }) }}">
-		
-				<img class="w-75 h-75 rounded" src="/imagesVins/{{listvins.pathProduct}}" alt="{{listvins.productName}}"/>
-		
-			</a> #}
+
 
 	{% include('_partials/_header.html.twig') %}
 
-	<h3 class="text-center mt-5 mb-5 firsttextpagevin">Nos coffret de vins ROUGES</h3>
+	<h3 class="text-center mt-5 mb-5 firsttextpagevin">Nos coffrets de vins ROUGES</h3>
 
 	{% for coffretrouge in coffretrouges %}
 
@@ -21,8 +16,9 @@
 			<div class="container containerproduit d-flex">
 
 				<div class="w-100">
-					<a href="{{url('showcoffretrouge',{'id':coffretrouge.id})}}">
-						<img class="w-50 h-50 rounded" src="/imagesVins/{{coffretrouge.pathProduct}}" alt="image_coffret">
+
+					<a href="{{url('showcoffret',{'id':coffretrouge.id})}}">
+						<img class="w-75 h-75 rounded" src="/imagesVins/{{coffretrouge.pathProduct}}" alt="image_coffret">
 					</a>
 				</div>
 
@@ -34,7 +30,6 @@
 						{{coffretrouge.productNote}}
 					</p>
 
-					{{coffretrouge.productArea}}
 					<p><img src="/imagedrapeaux/{{coffretrouge.flagPath}}" class="drapeau m-2">{{coffretrouge.productArea}}</p>
 
 

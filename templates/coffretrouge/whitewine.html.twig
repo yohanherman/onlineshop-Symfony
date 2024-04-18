@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}coffrets blancs
+{% endblock %}
+
+
+{% block body %}
+
+	{% include('_partials/_header.html.twig') %}
+
+	<h3 class="text-center mt-5 mb-5 firsttextpagevin">Nos coffrets de vins BLANCS</h3>
+
+	{% for coffretblanc in coffretblancs %}
+
+		<div class="m-2 ">
+
+			<div class=" container containerproduit d-flex">
+
+				<div class="w-100">
+
+					<a class="" href="{{url('showcoffret',{'id':coffretblanc.id})}}">
+						<img class="w-75 h-75 rounded" src="/imagesVins/{{coffretblanc.pathProduct}}" alt="image_coffret">
+					</a>
+
+				</div>
+
+				<div class="w-100">
+					<h4>{{coffretblanc.productName}}</h4>
+
+					<p>
+						<i class="fa-solid fa-star text-warning m-2"></i>
+						{{coffretblanc.productNote}}
+					</p>
+
+					<p><img src="/imagedrapeaux/{{coffretblanc.flagPath}}" class="drapeau m-2">{{coffretblanc.productArea}}</p>
+
+
+					{% if coffretblanc.discount > 0 %}
+
+						{% set remise = coffretblanc.productPrice * ( 1 - coffretblanc.discount / 100)  %}
+
+
+						<p class="text-danger">-
+							{{ coffretblanc.discount}}% de Remise</p>
+
+						<div>
+
+							<h4 class="text-danger">{{ remise }}€</h4>
+							<h4 class="text-decoration-line-through">{{coffretblanc.productPrice}}€</h4>
+
+						</div>
+
+					{% else %}
+						<h4>{{coffretblanc.productPrice}}€</h4>
+
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+
+	{% endfor %}
+{% endblock %}

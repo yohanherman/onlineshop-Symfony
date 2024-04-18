@@ -2,27 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\CoffretBlanc;
+use App\Entity\Categories;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<CoffretBlanc>
+ * @extends ServiceEntityRepository<Categories>
  *
- * @method CoffretBlanc|null find($id, $lockMode = null, $lockVersion = null)
- * @method CoffretBlanc|null findOneBy(array $criteria, array $orderBy = null)
- * @method CoffretBlanc[]    findAll()
- * @method CoffretBlanc[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Categories|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Categories|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Categories[]    findAll()
+ * @method Categories[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CoffretBlancRepository extends ServiceEntityRepository
+class CategoriesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, CoffretBlanc::class);
+        parent::__construct($registry, Categories::class);
     }
 
     //    /**
-    //     * @return CoffretBlanc[] Returns an array of CoffretBlanc objects
+    //     * @return Categories[] Returns an array of Categories objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -36,7 +36,7 @@ class CoffretBlancRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?CoffretBlanc
+    //    public function findOneBySomeField($value): ?Categories
     //    {
     //        return $this->createQueryBuilder('c')
     //            ->andWhere('c.exampleField = :val')

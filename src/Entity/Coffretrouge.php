@@ -49,6 +49,9 @@ class Coffretrouge
     #[ORM\Column]
     private ?int $discount = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -194,6 +197,18 @@ class Coffretrouge
     public function setDiscount(int $discount): static
     {
         $this->discount = $discount;
+
+        return $this;
+    }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(string $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

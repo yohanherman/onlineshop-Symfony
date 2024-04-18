@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Reviews;
 use App\Entity\User;
-use App\Entity\vins;
+use App\Entity\Vins;
 use App\Form\ReviewsType;
 use App\Repository\ReviewsRepository;
 use App\Repository\VinsRepository;
@@ -38,7 +38,7 @@ class VinController extends AbstractController
         return $this->render("vin/showvin.html.twig", ['vin' => $vin]);
     }
 
-    
+
     #[Route('/nos-vins/commentaire/{id}', name: 'commentaires')]
     public function createreviews(Request $request, EntityManagerInterface $entityManager, Vins $vins, ReviewsRepository $reviewsRepository): Response
     {

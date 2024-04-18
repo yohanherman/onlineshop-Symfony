@@ -10,11 +10,13 @@
 
 	{% include("_partials/_header.html.twig") %}
 
-	<div class="ms-4 mb-5 mt-4">
-		<a href="{{path('app_vin')}}">
+
+
+	{# <div class="ms-4 mb-5 mt-4">
+		<a href="{{path('')}}">
 			<i class="fa-solid fa-arrow-left"></i>
 		</a>
-	</div>
+	</div> #}
 
 	<div class=" text-center containerproduit m-3 p-1">
 
@@ -29,10 +31,10 @@
 				</button>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 					<li>
-						<a class="dropdown-item" href="{{path('images_produits',{'id':fichecoffret.id})}}">plus images ...</a>
+						<a class="dropdown-item" href="#">plus images ...</a>
 					</li>
 					<li>
-						<a class="dropdown-item" href="{{path('commentaires',{'id':fichecoffret.id})}}">commentaires</a>
+						<a class="dropdown-item" href="#">commentaires</a>
 					</li>
 				</div>
 

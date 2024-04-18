@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\vins;
+use App\Entity\Vins;
 use App\Repository\CoffretrougeRepository;
 use App\Repository\VinsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,7 +30,8 @@ class CartController extends AbstractController
         $total = 0;
         $totalavecreduc = 0;
         $vin = 0;
-        $quantiteAffichersurIcon = 0;
+        // $quantiteAffichersurIcon = 0;
+        // $rgt = 0;
 
         foreach ($panier as $id => $quantity) {
 
@@ -39,7 +40,7 @@ class CartController extends AbstractController
                 'vins' => $vins,
                 'quantity' => $quantity
             ];
-
+            // $rgt += $vins->getProductPrice() - (1 - $vins->getDiscountPrice() / 100) * $quantity;
             $total += $vins->getProductPrice() * $quantity;
             $totalavecreduc += $vins->getProductPrice() * (1 - $vins->getDiscountPrice() / 100) * $quantity;
             $vin += $vins->getDiscountPrice();

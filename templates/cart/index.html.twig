@@ -17,7 +17,6 @@
 	<h3 class="text-center mt-4 mb-3">Mon panier</h3>
 
 
-
 	{% if data is empty %}
 
 		<p class="d-flex justify-content-center align-items-center mt-5 ">Votre panier est presentement vide</p>
@@ -112,12 +111,13 @@
 			<div class="m-3">
 				<h4>Sous-total:
 					<span class="text-decoration">{{total}}
+
 						€</span>
 				</h4>
 			</div>
 
 			<div class="text-center p-2">
-				<a class="bg-danger rounded text-white p-2 text-decoration-none" href="{{path('empty')}}">vider le panier</a>
+				<a class="bg-danger rounded text-white p-2 text-decoration-none" href="{{path('cart_empty')}}">vider le panier</a>
 			</div>
 
 		{% endif %}

@@ -11,9 +11,10 @@ use Symfony\Component\Routing\Attribute\Route;
 class CoffretrougeController extends AbstractController
 {
     #[Route('/coffretrouge', name: 'coffretrouge')]
-    public function index(EntityManagerInterface $entitymanager): Response
+    public function showredwine(EntityManagerInterface $entitymanager): Response
     {
-        $coffretrouge = $entitymanager->getRepository(Coffretrouge::class)->findAll();
+        $coffretrouge = $entitymanager->getRepository(Coffretrouge::class)->findBy(['category' => 'rouge']);
+        // dd($coffretrouge);
 
         return $this->render('coffretrouge/index.html.twig', [
             'coffretrouges' => $coffretrouge,
@@ -21,7 +22,19 @@ class CoffretrougeController extends AbstractController
     }
 
 
-    #[Route('/showcoffret/{id}', name: 'showcoffretrouge')]
+    #[Route('/coffretblanc', name: 'coffretblanc')]
+    public function showWhiteWine(EntityManagerInterface $entitymanager): Response
+    {
+        $coffretblancs = $entitymanager->getRepository(Coffretrouge::class)->findBy(['category' => 'blanc']);
+        // dd($coffretblancs);
+
+        return $this->render('coffretrouge/whitewine.html.twig', [
+            'coffretblancs' => $coffretblancs,
+        ]);
+    }
+
+
+    #[Route('/showcoffret/{id}', name: 'showcoffret')]
     public function showcoffret(EntityManagerInterface $entitymanager, int $id): Response
     {
         $fichescoffret = $entitymanager->getRepository(Coffretrouge::class)->find($id);
