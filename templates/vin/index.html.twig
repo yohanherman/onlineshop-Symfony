@@ -9,9 +9,25 @@
 
 	{% include("_partials/_header.html.twig") %}
 
-
 	<h3 class="text-center mt-5 mb-5 firsttextpagevin">Notre Catalogue de vins</h3>
 
+
+	<div class=" d-flex justify-content-center align-items-center">
+		<div class="w-75 m-2">
+
+			{{ form_start(form)}}
+
+			{{ form_widget(form.q)}}
+
+			<div class="text-end">
+				<button class="btn btn-block bg-primary bg-transparent border-0 btnSearch " type="submit">
+					<i class="fa-solid fa-magnifying-glass fs-4"></i>
+				</button>
+			</div>
+			{{ form_end(form)}}
+
+		</div>
+	</div>
 
 	{% for listvins in vins %}
 

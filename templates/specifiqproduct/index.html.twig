@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}vins
+
+{% endblock %}
+
+
+{% block body %}
+
+	{% include("_partials/_header.html.twig") %}
+
+
+	{% for vinSpecifique in vinSpecifiques %}
+
+		<img src="imagesVins/{{vinSpecifique.pathProduct}}" alt="{{vinSpecifique.productName}}"/>
+
+		<p>{{vinSpecifique.productNote}}</p>
+
+	{% endfor %}
+
+
+{% endblock %}

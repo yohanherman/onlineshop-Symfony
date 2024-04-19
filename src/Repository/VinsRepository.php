@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Vins;
+use App\Model\SearchData;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,6 +21,31 @@ class VinsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Vins::class);
     }
+
+    
+
+    public function findBySearch(SearchData $searchData)
+    {
+
+        $productsearch = $this->createQueryBuilder('v')
+            ->where('v.status LIKE :status')
+            ->setParameter('status', 1);
+
+        if (!empty($searchData->q)) {
+            $productsearch = $productsearch
+                ->andwhere('v.productName LIKE :q')
+                ->setParameter('q', '%' . $searchData->q . '%');
+        }
+
+        // $productsearch = $productsearch
+
+        $query = $productsearch->getQuery();
+
+        return $query->execute();
+    }
+
+
+
 
     //    /**
     //     * @return Vins[] Returns an array of Vins objects

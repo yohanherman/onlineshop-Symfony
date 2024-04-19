@@ -1,0 +1,81 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+
+
+	{% if productsearchs is empty %}
+
+		<div class="d-flex justify-content-center align-items-center">
+			<p>
+				aucun result trouvé
+			</p>
+		</div>
+
+	{% else %}
+
+
+		{% for productsearch in productsearchs %}
+
+			<div class="m-2 ">
+				<div
+					class=" d-flex containerproduit">
+
+
+					{# w-100 pour la largeur de mon bloc qui contient mon'image #}
+					<div class="w-100">
+
+						<a href="{{url('vinsShow', {'id': productsearch.id }) }}">
+
+							<img class="w-75 h-75 rounded" src="/imagesVins/{{productsearch.pathProduct}}" alt="{{productsearch.productName}}"/>
+
+						</a>
+
+					</div>
+
+					{# pour la largeur du bloc  qui contient les details #}
+					<div class="w-100">
+						<p>
+							<i class="fa-solid fa-star text-warning m-2"></i>
+							{{productsearch.productNote}}
+						</p>
+
+						<h4>{{productsearch.productName}}</h4>
+
+						<p>
+							<img src="imagedrapeaux/{{productsearch.flagPath}}" class="drapeau m-2">
+							{{productsearch.productArea}}
+						</p>
+
+
+						{% if productsearch.discountPrice > 0 %}
+
+
+							{% set remise = productsearch.productPrice * ( 1 - productsearch.discountPrice / 100)  %}
+
+
+							<p class="text-danger">-
+								{{ productsearch.discountPrice}}% de Remise</p>
+
+							<div>
+
+								<h4 class="text-danger">{{ remise }}€</h4>
+								<h4 class="text-decoration-line-through">{{productsearch.productPrice}}€</h4>
+
+							</div>
+
+
+						{% else %}
+							<h4>{{productsearch.productPrice}}€</h4>
+
+						{% endif %}
+
+					</div>
+				</div>
+
+			</div>
+		{% endfor %}
+
+	{% endif %}
+
+{% endblock %}

@@ -257,6 +257,8 @@ class Vins
         return $this->getProductName();
     }
 
+    
+
 
     /**
      * @return Collection<int, Reviews>

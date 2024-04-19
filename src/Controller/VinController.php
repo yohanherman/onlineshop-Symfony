@@ -6,6 +6,8 @@ use App\Entity\Reviews;
 use App\Entity\User;
 use App\Entity\Vins;
 use App\Form\ReviewsType;
+use App\Form\SearchType;
+use App\Model\SearchData;
 use App\Repository\ReviewsRepository;
 use App\Repository\VinsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,12 +20,28 @@ class VinController extends AbstractController
 {
     #[Route('/nos-vins', name: 'app_vin')]
 
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, VinsRepository $vinsRepository): Response
     {
+        // barre de recherche
+        $searchData = new SearchData;
+        $form = $this->createForm(SearchType::class, $searchData);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // dd($searchData->q);
+
+            $productsearch = $vinsRepository->findBySearch($searchData);
+            // dd($productsearch);
+
+            return $this->render('vin/Search.html.twig', ['form' => $form, 'productsearchs' => $productsearch]);
+        }
+        // fin barre de recherche
+
+
         $vin = $entityManager->getRepository(Vins::class)->findAll();
 
         return $this->render('vin/index.html.twig', [
-            'vins' => $vin,
+            'vins' => $vin, 'form' => $form
         ]);
     }
 
@@ -59,7 +77,6 @@ class VinController extends AbstractController
             // aucun user connecté, je fais quelque chose
             return new Response('connectez-vous pour voir et ajouter les commentaires');
         }
-
 
 
         $reviews = new Reviews();
