@@ -11,12 +11,11 @@
 	{% include("_partials/_header.html.twig") %}
 
 
-
 	{# <div class="ms-4 mb-5 mt-4">
-		<a href="{{path('')}}">
-			<i class="fa-solid fa-arrow-left"></i>
-		</a>
-	</div> #}
+			<a href="{{path('')}}">
+				<i class="fa-solid fa-arrow-left"></i>
+			</a>
+		</div> #}
 
 	<div class=" text-center containerproduit m-3 p-1">
 
@@ -40,8 +39,8 @@
 
 
 				{# <div class="mb-4">
-																	<a class="text-decoration-none" href="{{path('images_produits',{'id':vin.id})}}">voir plus d'images ...</a>
-																</div> #}
+																					<a class="text-decoration-none" href="{{path('images_produits',{'id':vin.id})}}">voir plus d'images ...</a>
+																				</div> #}
 
 				<h4>{{fichecoffret.productName}}</h4>
 
@@ -96,7 +95,7 @@
 					{% if fichecoffret.status == 1 %}
 
 						<div class="">
-							<form class="d-flex flex-column" action="{{path("cart_add",{'id':fichecoffret.id})}}" method="POST">
+							<form class="d-flex flex-column" action="{{path("coffretcart_add",{'id':fichecoffret.id})}}" method="POST">
 								<input type="number" name="quantity" class="mb-3"/>
 
 								<button class="btnaddcart" type="submit">

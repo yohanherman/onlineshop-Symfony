@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier
+{% endblock %}
+
+{% block body %}
+
+	{% include('_partials/_header.html.twig')%}
+
+	<div class="ms-4 mb-5 mt-4">
+		<a href="{{path('coffretrouge')}}">
+			<i class="fa-solid fa-arrow-left"></i>
+		</a>
+	</div>
+
+
+	<h3 class="text-center mt-4 mb-3">Mon panier</h3>
+
+
+	{% if data is empty %}
+
+		<p class="d-flex justify-content-center align-items-center mt-5 ">Votre panier est presentement vide</p>
+
+	{% else %}
+
+		{% for element in data %}
+
+			<div class="containerprodpanier P-4 border border-secondary m-3">
+
+				<div class="d-flex justify-content-between">
+					<div class="d-flex flex-column ">
+						<img class="imageProdDansPanier" src="/imagesVins/{{element.coffrets.pathproduct}}" alt="image_du_produit"/>
+						<h5 class="ms-2">{{element.coffrets.productName}}</h5>
+					</div>
+
+					<div class="mt-4 ms-3">
+
+						{% if element.coffrets.discount > 0 %}
+
+							{% set prixDeRemise = element.coffrets.productPrice * ( 1 - element.coffrets.discount / 100)  %}
+
+							<p>Prix:
+								<span class="fw-bold text-danger">
+									{{prixDeRemise}}
+									€</span>
+							</p>
+
+							<span class="fw-bold text-decoration-line-through">
+								{{element.coffrets.productPrice}}
+
+								€</span>
+
+
+						{% else %}
+
+							<p>Prix:
+								<span class="fw-bold">
+									{{element.coffrets.productPrice}}
+									€</span>
+							</p>
+
+						{% endif %}
+
+					</div>
+
+
+					<div class="ms-5 mt-4 d-flex m-2">
+						<a href="{{path('coffretcart_remove',{'id': element.coffrets.id })}}">
+							<i class="fa-solid fa-minus text-warning"></i>
+						</a>
+
+						<input class="inputquantitypanier fw-bold border-0" type="text" name="quantity" value="{{element.quantity}}"/>
+
+						<a href="{{path('coffretcart_addMore',{'id': element.coffrets.id })}}">
+							<i class="fa-solid fa-plus text-success"></i>
+						</a>
+
+					</div>
+
+					<div class="mt-4 me-3">
+						<a href="{{path('coffretcart_delete',{'id':element.coffrets.id})}}">
+							<i class="fa-solid fa-trash text-danger"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+
+
+		{% if  coffret > 0 %}
+
+			<div class="m-3">
+				<h4>Sous-total:
+					<span class="text-decoration-line-through">{{total}}
+						€</span>
+				</h4>
+			</div>
+
+			<div class="m-3">
+				<h4>Sous-total Applicable:
+					<span class="text-danger">{{totalavecreduc}}
+						€</span>
+				</h4>
+			</div>
+
+			<div class="text-center p-2">
+				<a class="bg-danger rounded text-white p-2 text-decoration-none" href="{{path('coffretcart_empty')}}">vider le panier</a>
+			</div>
+		{% else %}
+
+			<div class="m-3">
+				<h4>Sous-total:
+					<span class="text-decoration">{{total}}
+
+						€</span>
+				</h4>
+			</div>
+
+			<div class="text-center p-2">
+				<a class="bg-danger rounded text-white p-2 text-decoration-none" href="{{path('coffretcart_empty')}}">vider le panier</a>
+			</div>
+
+		{% endif %}
+		<div class="text-center mt-5 w-100 ">
+			<a class="btncommande text-decoration-none bg-success text-white p-3 rounded w-100" href="">Commander</a>
+		</div>
+	{% endif %}
+{% endblock %}
