@@ -22,7 +22,6 @@ class VinsRepository extends ServiceEntityRepository
         parent::__construct($registry, Vins::class);
     }
 
-    
 
     public function findBySearch(SearchData $searchData)
     {
