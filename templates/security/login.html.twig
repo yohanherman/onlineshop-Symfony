@@ -16,12 +16,12 @@
 
 
 		{# {% if app.user %}
-																					<div class="mb-3">
-																						vous connectez avec l'Email :
-																						{{ app.user.userIdentifier }},
-																						<a href="{{ path('app_logout') }}">se deconnecter</a>
-																					</div>
-																				{% endif %} #}
+																									<div class="mb-3">
+																										vous connectez avec l'Email :
+																										{{ app.user.userIdentifier }},
+																										<a href="{{ path('app_logout') }}">se deconnecter</a>
+																									</div>
+																								{% endif %} #}
 
 
 		<div class="m-2">
@@ -39,7 +39,7 @@
 
 			</div>
 			<div class="text-end mt-3">
-				<a class="text-decoration-none" href="#">Mot de passe oublié ?</a>
+				<a class="text-decoration-none" href="{{path('app_forgot_password_request')}}">Mot de passe oublié ?</a>
 			</div>
 
 
