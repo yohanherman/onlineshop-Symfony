@@ -6,6 +6,7 @@ use App\Repository\VinsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: VinsRepository::class)]
 class Vins
@@ -13,54 +14,68 @@ class Vins
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['getAllWines'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     private ?string $pathProduct = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['getAllWines','getAllReviews'])]
     private ?string $productName = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['getAllWines'])]
     private ?string $productNote = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['getAllWines'])]
     private ?string $productArea = null;
 
     #[ORM\Column]
+    #[Groups(['getAllWines'])]
     private ?float $productPrice = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['getAllWines'])]
     private ?string $flagPath = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['getAllWines'])]
     private ?string $cepage = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['getAllWines'])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['getAllWines'])]
     private ?string $producttageagreement = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['getAllWines'])]
     private ?string $producttagtaste = null;
 
     #[ORM\Column]
+    #[Groups(['getAllWines'])]
     private ?int $status = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['getAllWines'])]
     private ?int $discountPrice = null;
 
     /**
      * @var Collection<int, Images>
      */
     #[ORM\OneToMany(targetEntity: Images::class, mappedBy: 'vins')]
+
     private Collection $images;
 
     /**
      * @var Collection<int, Reviews>
      */
     #[ORM\OneToMany(targetEntity: Reviews::class, mappedBy: 'vins')]
+    #[Groups(['getAllWines'])]
     private Collection $reviews;
 
     #[ORM\ManyToOne(inversedBy: 'vins')]
@@ -257,7 +272,7 @@ class Vins
         return $this->getProductName();
     }
 
-    
+
 
 
     /**

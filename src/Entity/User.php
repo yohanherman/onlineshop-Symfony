@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -44,6 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?bool $isVerified = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['getAllWines', 'getAllReviews'])]
     private ?string $pseudo = null;
 
 
@@ -164,7 +166,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->isVerified = FALSE;
         $this->tokenRegistrationLifeTime = (new \Datetime('now'))->add(new \DateInterval('P1D'));
-    
     }
 
     public function getPseudo(): ?string
