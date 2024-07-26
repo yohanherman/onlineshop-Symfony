@@ -1,0 +1,24 @@
+# Ignore les fichiers et dossiers spécifiques à l'environnement local
+.dockerignore
+Dockerfile
+docker-compose.yml
+node_modules
+*.log
+*.git
+.git
+.vscode
+.env
+.idea
+*.sql
+*.tar
+*.zip
+*.gitignore
+
+# Ignorer les dossiers temporaires et les fichiers générés
+tmp
+cache
+logs
+var
+vendor
+build
+public/bundles
