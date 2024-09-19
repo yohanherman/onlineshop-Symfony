@@ -6,5 +6,5 @@ Création de Compte,Connexion Sécurisée.
 consommation d'une API Simple sur la liste de nos vins , et sur les commentaires des produits avec possiblité d'en ajouter a travers l'API
 
 # langages utilisés
-Symfony, twig, doctrine, Boostrap
+Symfony, twig, doctrine, Bootstrap
 
